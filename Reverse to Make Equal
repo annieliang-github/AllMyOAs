@@ -33,3 +33,32 @@ class Main {
         }
     return res;
   }
+
+
+
+class Main {
+
+  // Add any helper functions you may need here
+
+  boolean areTheyEqual(int[] array_a, int[] array_b) {
+    // Write your code here    
+    Map<Integer, Integer> map = new HashMap<>();
+    for (int i = 0; i < array_a.length; i++) {
+      map.put(array_a[i], map.getOrDefault(array_a[i], 0) + 1);
+    }
+    for (int i = 0; i < array_b.length; i++) {
+      if (map.containsKey(array_b[i])) {
+        int count = map.get(array_b[i]);
+        if (count > 0) {
+          map.put(array_b[i], count - 1);
+        } 
+      } else {
+        return false;
+      }
+    }
+    
+    for (Integer value : map.values()) {
+      if (value != 0) return false;
+    }
+    return true;
+  }
